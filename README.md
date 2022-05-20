@@ -1,5 +1,6 @@
 # Experiment-no-7-DC-Motor-Speed-Control-Using-Arduino
-### AIM : To control the speed and the direction of a DC motor using L293D driver ic( H- bridge)
+### AIM :
+To control the speed and the direction of a DC motor using L293D driver ic( H- bridge)
 
 ### Components Required:
 •	Arduino UNO board
@@ -10,7 +11,7 @@
 •	12V source
 •	Breadboard
 •	Jumper wires
-### THEORY 
+### THEORY :
 The L293D quadruple half-H drivers chip allows us to drive 2 motors in both directions, with two PWM outputs from the Arduino we can easily control the speed as well as the direction of rotation of one DC motor. (PWM: Pulse Width Modulation).
 Arduino DC motor control circuit:
 Project circuit schematic diagram is the one below.
@@ -25,9 +26,44 @@ TABLE-01 EXITATION TABLE FOR H BRIDGE
 
 As shown in the circuit diagram we need only 3 Arduino terminal pins, pin 8 is for the push button which toggles the motor direction of rotation. Pins 9 and 10 are PWM signal outputs, at any time there is only 1 active PWM, this allows us to control the direction as well as the speed by varying the duty cycle of the PWM signal. The active PWM pin decides the motor direction of rotation (one at a time, the other output is logic 0).
 
-### PRGORAM 
+### PRGORAM :
+```
+#define m1 2
+#define m2 3
+#define m3 4
+#define m4 5
 
-### OUTPUT
+int buttonState=0;
+void setup()
+{
+  pinMode(m1, OUTPUT);
+  pinMode(m2,OUTPUT);
+  pinMode(m3,OUTPUT);
+  pinMode(m4,OUTPUT);
+}
 
-### RESULTS AND DISCUSSION 
+void loop()
+{
+  buttonState=digitalRead(13);
+  if (buttonState==HIGH)
+ {
+  digitalWrite(m1,HIGH);
+  digitalWrite(m2,LOW);
+  digitalWrite(m3,HIGH);
+  digitalWrite(m4,LOW);
+  delay(10000);
+}
+else
+{
+  digitalWrite(7,LOW);
+}
+delay(10);
+}
+```
 
+### OUTPUT :
+![output](p1.png)
+![output](p2.png)
+
+### RESULTS AND DISCUSSION :
+Thus the above DC motor speed control using Arduino successfully worked.
